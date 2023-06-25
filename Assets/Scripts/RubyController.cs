@@ -17,7 +17,7 @@ public class RubyController : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        currentHealth = 10;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -39,19 +39,6 @@ public class RubyController : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        RubyController controller = other.GetComponent<RubyController>();
-
-        if(controller!=null)
-        {
-            if (controller.currentHealth < controller.maxHealth)
-            {
-                controller.ChangeHealth(1);
-                Destroy(gameObject);
-            }
-        }
     }
 }
 
